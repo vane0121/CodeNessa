@@ -1,14 +1,4 @@
-/*!
-* Start Bootstrap - Freelancer v7.0.7 (https://startbootstrap.com/theme/freelancer)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
-*/
-//
-// Scripts
-// 
-
 window.addEventListener('DOMContentLoaded', event => {
-
     // Navbar shrink function
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
@@ -16,11 +6,10 @@ window.addEventListener('DOMContentLoaded', event => {
             return;
         }
         if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
+            navbarCollapsible.classList.remove('navbar-shrink');
         } else {
-            navbarCollapsible.classList.add('navbar-shrink')
+            navbarCollapsible.classList.add('navbar-shrink');
         }
-
     };
 
     // Shrink the navbar 
@@ -36,7 +25,7 @@ window.addEventListener('DOMContentLoaded', event => {
             target: '#mainNav',
             rootMargin: '0px 0px -40%',
         });
-    };
+    }
 
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
@@ -51,4 +40,39 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+    // Form submission handler
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(contactForm);
+
+        fetch(contactForm.action, {
+            method: contactForm.method,
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('submitSuccessMessage').classList.remove('d-none');
+                document.getElementById('submitErrorMessage').classList.add('d-none');
+                contactForm.reset();
+            } else {
+                return response.json().then(data => {
+                    if (data.errors) {
+                        throw new Error(data.errors.map(error => error.message).join(', '));
+                    } else {
+                        throw new Error('Error sending message!');
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            document.getElementById('submitSuccessMessage').classList.add('d-none');
+            document.getElementById('submitErrorMessage').classList.remove('d-none');
+            console.error('Error:', error);
+        });
+    });
 });

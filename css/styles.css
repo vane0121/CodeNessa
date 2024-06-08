@@ -1,15 +1,4 @@
 @charset "UTF-8";
-/*!
-* Start Bootstrap - Freelancer v7.0.7 (https://startbootstrap.com/theme/freelancer)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
-*/
-/*!
- * Bootstrap  v5.2.3 (https://getbootstrap.com/)
- * Copyright 2011-2022 The Bootstrap Authors
- * Copyright 2011-2022 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -385,6 +374,7 @@ button,
 [type=reset],
 [type=submit] {
   -webkit-appearance: button;
+  appearance: button;
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
@@ -443,6 +433,7 @@ legend + * {
 [type=search] {
   outline-offset: -2px;
   -webkit-appearance: textfield;
+  appearance: textfield;
 }
 
 /* rtl:raw:
@@ -464,6 +455,7 @@ legend + * {
 ::file-selector-button {
   font: inherit;
   -webkit-appearance: button;
+  appearance: button;
 }
 
 output {
@@ -10980,6 +10972,7 @@ html {
 }
 .masthead .masthead-avatar {
   width: 15rem;
+  border-radius: 50%;
 }
 
 @media (min-width: 992px) {
@@ -10995,6 +10988,45 @@ html {
     font-size: 1.5rem;
   }
 }
+.service .service-item {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  max-width: 25rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.service .service-item .service-item-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  background-color: rgba(229, 144, 183, 0.9);
+}
+.service .service-item .service-item-caption:hover {
+  opacity: 1;
+}
+.service .service-item .service-item-caption .service-item-caption-content {
+  font-size: 1.5rem;
+}
+
+.service-modal .btn-close {
+  color: #E590B7;
+  font-size: 2rem;
+  padding: 1rem;
+}
+.service-modal .service-modal-title {
+  font-size: 2.25rem;
+  line-height: 2rem;
+}
+@media (min-width: 992px) {
+  .service-modal .service-modal-title {
+    font-size: 3rem;
+    line-height: 2.5rem;
+  }
+}
+
 .portfolio .portfolio-item {
   cursor: pointer;
   position: relative;
